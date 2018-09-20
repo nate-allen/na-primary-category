@@ -1,11 +1,11 @@
 <?php
 /*
 * Plugin Name: Primary Category
-* Plugin URI: https://github.com/nate-allen/primary-category
+* Plugin URI: https://github.com/nate-allen/na-primary-category
 * Description: Allows publishers to designate a primary category for posts, and query for posts by their primary category.
 * Version: 0.1.0
 * License: GPL-2.0+
-* Author URI: https://github.com/nate-allen/
+* Author URI: https://github.com/nate-allen
 * Text Domain: na-primary-category
 *
 * @package PrimaryCategory
