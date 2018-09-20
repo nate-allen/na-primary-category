@@ -1,0 +1,8 @@
+node_modules
+bower_components
+vendor
+dist
+.DS_Store
+._*
+Thumbs.db
+*.log
