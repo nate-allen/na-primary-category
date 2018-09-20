@@ -69,7 +69,7 @@ class Bootstrap {
 	protected function load_controllers() {
 		$namespace = $this->config->get( 'namespace' );
 
-		foreach ( Files::glob_recursive( $this->config->get( 'plugin_path' ) . 'app/Controller/*.php' ) as $file ) {
+		foreach ( Files::glob_recursive( PRIMARY_CATEGORY_PATH . 'app/Controller/*.php' ) as $file ) {
 			preg_match( '/\/Controller\/(.+)\.php/', $file, $matches, PREG_OFFSET_CAPTURE );
 
 			$name  = str_replace( '/', '\\', $matches[1][0] );
