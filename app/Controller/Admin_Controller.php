@@ -10,19 +10,26 @@ namespace Primary_Category\Controller;
 class Admin_Controller extends Controller {
 
 	public function register_actions() {
-		add_action( 'admin_print_styles-post-new.php', array( $this, 'load_assets' ) );
-		add_action( 'admin_print_styles-post.php', array( $this, 'load_assets' ) );
-		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts_and_styles' ) );
-		add_action( 'wp_dashboard_setup', array( $this, 'register_salesforce_sync_widget' ) );
-		add_action( 'wp_ajax_force_sync', array( $this, 'force_sync' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts_and_styles' ), 10, 1 );
 	}
 
-	public function load_assets() {
+	/**
+	 * Enqueue JavaScript and CSS for the admin post edit screen
+	 *
+	 * Scripts and styles are registered in Primary_Category\Core\Bootstrap
+	 *
+	 * @param string $hook_suffix The current admin page.
+	 * @return void
+	 */
+	public function enqueue_admin_scripts_and_styles( $hook_suffix ) {
+		// Bail early if this isn't the post edit screen
+		if ( 'post-new.php' !== $hook_suffix && 'post.php' !== $hook_suffix ) {
+			return;
+		}
+
 		wp_enqueue_style( 'primary-category-admin' );
-	}
 
-	public function enqueue_admin_scripts_and_styles() {
-		wp_enqueue_script( 'primary-category-admin', $this->config->get( 'js_url' ) . 'primary-category-admin.js', array( 'jquery' ), '1.0.0', true );
+		wp_enqueue_script( 'primary-category-admin', $this->config->get( 'js_url' ) . 'primary-category-admin.min.js', array( 'jquery' ), $this->config->get( 'version' ), true );
 
 		wp_localize_script(
 			'primary-category-admin',
