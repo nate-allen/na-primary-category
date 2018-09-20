@@ -50,6 +50,7 @@ class Config_Model {
 
 		$this->import( $plugin_headers );
 
+		$this->set( 'namespace', 'Primary_Category' );
 		$this->set( 'css_url', PRIMARY_CATEGORY_PLUGIN_URL . 'dist/css/' );
 		$this->set( 'js_url', PRIMARY_CATEGORY_PLUGIN_URL . 'dist/js/' );
 		$this->set( 'images_url', PRIMARY_CATEGORY_PLUGIN_URL . 'dist/images/' );
