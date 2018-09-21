@@ -28,8 +28,8 @@ primary_category.admin = function ($) {
                 .on( 'click', '.na-make-primary-category', self.make_category_primary )
                 .on( 'change', '.yoast-wpseo-primary-term', self.update_hidden_field );
 
-            self.maybe_setup_buttons();
             self.setup_primary_category();
+            self.maybe_setup_buttons();
         },
 
         /**
