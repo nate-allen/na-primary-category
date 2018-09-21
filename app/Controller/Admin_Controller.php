@@ -46,9 +46,8 @@ class Admin_Controller extends Controller {
 			'primary-category-admin',
 			'primary_category_admin',
 			array(
-				'primary_category'    => 'test',
 				'yoast_seo_installed' => is_plugin_active( 'wordpress-seo/wp-seo.php' ),
-				'user_has_permission' => $this->user_can_set_primary_category(),
+				'user_has_permission' => $primary_category_model->user_can_set_primary_category(),
 				'i18n'                => array(
 					'primary'      => esc_attr__( 'Primary', 'na-primary-category' ),
 					'make_primary' => esc_attr__( 'Make Primary', 'na-primary-category' ),
@@ -65,8 +64,10 @@ class Admin_Controller extends Controller {
 	 * @return void
 	 */
 	public function add_fields_to_submitbox( $post ) {
+		$primary_category_model = new Primary_Category_Model();
+
 		// Don't add fields if the current user can't set primary category
-		if ( ! $this->user_can_set_primary_category() ) {
+		if ( ! $primary_category_model->user_can_set_primary_category() ) {
 			return;
 		}
 
@@ -76,25 +77,5 @@ class Admin_Controller extends Controller {
 
 		// Display the view
 		$this->the_view( 'admin/submitbox-fields' );
-	}
-
-	/**
-	 * Determines if the current user can set the primary category
-	 *
-	 * @return bool
-	 */
-	protected function user_can_set_primary_category() {
-		global $post;
-
-		/**
-		 * Filters the default setting for determining if current user has permission to
-		 * set the primary category for a post.
-		 *
-		 * By default, this is determined by the edit_post capability, but you can use this
-		 * filter to create your own rules.
-		 *
-		 * @param bool Whether the user can set primary category
-		 */
-		return apply_filters( 'user_can_set_primary_category', current_user_can( 'edit_posts', $post->ID ) );
 	}
 }

@@ -58,4 +58,30 @@ class Primary_Category_Model {
 		 */
 		$this->args = apply_filters( 'primary_category_taxonomy_args', $default_args );
 	}
+
+	/**
+	 * Determines if the current user can set the primary category
+	 *
+	 * @param int $post_id The ID of the post to check if a user can edit the primary category for
+	 *
+	 * @return bool
+	 */
+	public function user_can_set_primary_category( $post_id = 0 ) {
+		if ( empty( $post_id ) ) {
+			global $post;
+
+			$post_id = $post->ID;
+		}
+
+		/**
+		 * Filters the default setting for determining if current user has permission to
+		 * set the primary category for a post.
+		 *
+		 * By default, this is determined by the edit_post capability, but you can use this
+		 * filter to create your own rules.
+		 *
+		 * @param bool Whether the user can set primary category
+		 */
+		return apply_filters( 'user_can_set_primary_category', current_user_can( 'edit_posts', $post_id ) );
+	}
 }
