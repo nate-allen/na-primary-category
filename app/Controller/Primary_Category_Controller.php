@@ -19,6 +19,7 @@ class Primary_Category_Controller extends Controller {
 	public function register_actions() {
 		add_action( 'init', array( $this, 'register_taxonomy' ) );
 		add_action( 'save_post', array( $this, 'update_primary_category' ) );
+		add_action( 'pre_get_posts', array( $this, 'handle_custom_query_parameter' ) );
 	}
 
 	/**
@@ -66,5 +67,31 @@ class Primary_Category_Controller extends Controller {
 
 		// Set the primary category
 		wp_set_object_terms( $post_id, sanitize_text_field( $_POST['na_primary_category_id'] ), 'na_primary_category' );
+	}
+
+
+	/**
+	 * Handle the 'primary_category' argument in WP_Query
+	 *
+	 * @param $query
+	 */
+	public function handle_custom_query_parameter( $query ) {
+		if ( is_admin() || ! $query->is_main_query() || $query->is_search ) {
+			return;
+		}
+
+		if ( ! isset( $query->query_vars['primary_category'] ) ) {
+			return;
+		}
+
+		$tax_query = array(
+			array(
+				'taxonomy' => 'na_primary_category',
+				'field'    => 'slug',
+				'terms'    => $query->query_vars['primary_category'],
+			),
+		);
+
+		$query->set( 'tax_query', $tax_query );
 	}
 }
