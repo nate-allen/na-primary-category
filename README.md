@@ -4,6 +4,12 @@
 
 **Primary Category** is a plugin that allows publishers to designate a primary category for posts, and query for posts by their primary category.
 
+## Setting the primary category
+
+When adding more than 1 category, you are given the option of selecting which category is the primary one:
+
+![Setting primary category](https://github.com/nate-allen/na-primary-category/blob/master/assets/screenshot-1.png)
+
 ## Querying by primary category
 
 This plugin extends `WP_Query` by adding a new parameter, `primary_category`, that accepts the category ID to get posts for have that as their primary category.
