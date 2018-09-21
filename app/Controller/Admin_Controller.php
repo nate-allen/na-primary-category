@@ -73,7 +73,7 @@ class Admin_Controller extends Controller {
 
 		// Assign variables for the view
 		$this->assign( 'post_id', $post->ID );
-		$this->assign( 'primary_category', '4' );
+		$this->assign( 'primary_category', $primary_category_model->get_primary_category_id( $post->ID ) );
 
 		// Display the view
 		$this->the_view( 'admin/submitbox-fields' );
