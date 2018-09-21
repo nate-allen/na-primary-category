@@ -69,22 +69,19 @@ class Primary_Category_Controller extends Controller {
 		wp_set_object_terms( $post_id, sanitize_text_field( $_POST['na_primary_category_id'] ), 'na_primary_category' );
 	}
 
-
 	/**
 	 * Handle the 'primary_category' argument in WP_Query
 	 *
 	 * @param $query
 	 */
 	public function handle_custom_query_parameter( $query ) {
-		if ( is_admin() || ! $query->is_main_query() || $query->is_search ) {
-			return;
-		}
-
 		if ( ! isset( $query->query_vars['primary_category'] ) ) {
 			return;
 		}
 
-		$tax_query = array(
+		$tax_query = $query->get( 'tax_query' ) ? : array();
+
+		$tax_query[] = array(
 			array(
 				'taxonomy' => 'na_primary_category',
 				'field'    => 'slug',
