@@ -18,6 +18,7 @@ class Primary_Category_Controller extends Controller {
 	 */
 	public function register_actions() {
 		add_action( 'init', array( $this, 'register_taxonomy' ) );
+		add_action( 'save_post', array( $this, 'update_primary_category' ) );
 	}
 
 	/**
@@ -33,5 +34,37 @@ class Primary_Category_Controller extends Controller {
 		$primary_category_model = new Primary_Category_Model();
 
 		register_taxonomy( 'na_primary_category', array( 'post' ), $primary_category_model->args );
+	}
+
+	/**
+	 * Update the primary category when the post is saved
+	 *
+	 * @param $post_id int Post ID
+	 */
+	public function update_primary_category( $post_id ) {
+		$primary_category_model = new Primary_Category_Model();
+
+		// Skip revisions and autosaves
+		if ( ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) || wp_is_post_revision( $post_id ) ) {
+			return;
+		}
+
+		// Verify the nonce
+		if ( ! isset( $_POST['_na_primary_category_nonce'] ) || ! wp_verify_nonce( sanitize_key( $_POST['_na_primary_category_nonce'] ), "set_primary_category_{$post_id}" ) ) {
+			return;
+		}
+
+		// Check if user has ability to edit primary category
+		if ( ! $primary_category_model->user_can_set_primary_category( $post_id ) ) {
+			return;
+		}
+
+		// Check if the primary category is set
+		if ( ! isset( $_POST['na_primary_category_id'] ) ) {
+			return;
+		}
+
+		// Set the primary category
+		wp_set_object_terms( $post_id, sanitize_text_field( $_POST['na_primary_category_id'] ), 'na_primary_category' );
 	}
 }
