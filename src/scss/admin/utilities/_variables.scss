@@ -1,0 +1,30 @@
+/*********************
+       COLORS
+*********************/
+$black: #000;
+$almost-black: #2c2c2c;
+$white: #fff;
+$blue: #214697;
+$dark-blue: #132b6b;
+$yellow: #f6ad2e;
+$orange: #f37637;
+$green: #7bc14e;
+$purple: #7b4596;
+$dark-green: #599b43;
+$success: #91be4c;
+$danger: #d9534f;
+
+/*********************
+     BREAKPOINTS
+*********************/
+// Standard
+$mobile-small: ( max: 320px );
+$mobile-medium: ( max: 375px );
+$mobile-large: ( max: 425px );
+$tablet: ( max: 768px );
+$laptop: ( max: 1024px );
+$laptop-large: ( max: 1440px );
+
+// Custom
+$admin-small: ( max: 782px );
+$admin-large: ( min: 783px );

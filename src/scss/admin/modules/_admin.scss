@@ -1,0 +1,29 @@
+// Primary Category
+.na-is-primary-category {
+  label {
+    font-weight: bold;
+  }
+
+  .na-primary {
+    float: right;
+  }
+}
+
+// Button Style
+.na-make-primary-category {
+  color: #0073aa;
+  cursor: pointer;
+  font-size: 13px;
+  vertical-align: middle;
+  float: right;
+  text-decoration: underline;
+  border: none;
+  margin: 0;
+  padding: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  &:hover {
+    color: #00a0d2;
+  }
+}
