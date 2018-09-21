@@ -33,8 +33,24 @@ class Primary_Category_Model {
 		$this->set_args();
 	}
 
-	public function get_primary_category( $post ) {
-		return true;
+
+	/**
+	 * Get the primary category id
+	 *
+	 * @param $post_id
+	 *
+	 * @return int|bool Primary category ID if it exists, false if there is no primary category
+	 */
+	public function get_primary_category_id( $post_id = 0 ) {
+		if ( empty( $post_id ) ) {
+			global $post;
+
+			$post_id = $post->ID;
+		}
+
+		$terms = get_the_terms( $post_id, 'na_primary_category' );
+
+		return $terms ? absint( $terms[0]->slug ) : false;
 	}
 
 	/**
