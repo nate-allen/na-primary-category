@@ -35,8 +35,8 @@ class Bootstrap {
 		$this->register_actions();
 
 		// Register scripts and styles
-		add_action( 'wp_enqueue_scripts', array( $this, 'register_scripts_and_styles' ) );
-		add_action( 'admin_enqueue_scripts', array( $this, 'register_scripts_and_styles' ) );
+		add_action( 'init', array( $this, 'register_scripts_and_styles' ) );
+		add_action( 'admin_init', array( $this, 'register_scripts_and_styles' ) );
 
 		// The plugin is ready!
 		do_action( 'primary_category_ready', $this );
@@ -99,7 +99,8 @@ class Bootstrap {
 	 */
 	public function register_scripts_and_styles() {
 		if ( is_admin() ) {
-			wp_register_script( 'primary-category-admin', $this->config->get( 'js_url' ) . 'primary-category-admin.js', array( 'jquery' ), $this->config->get( 'version' ), true );
+			wp_register_script( 'primary-category-admin', $this->config->get( 'js_url' ) . 'primary-category-admin.min.js', array( 'jquery' ), $this->config->get( 'version' ), true );
+			wp_register_style( 'primary-category-admin', $this->config->get( 'css_url' ) . 'primary-category-admin.min.css', array(), $this->config->get( 'version' ) );
 		}
 	}
 
