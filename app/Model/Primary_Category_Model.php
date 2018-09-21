@@ -96,8 +96,9 @@ class Primary_Category_Model {
 		 * By default, this is determined by the edit_post capability, but you can use this
 		 * filter to create your own rules.
 		 *
-		 * @param bool Whether the user can set primary category
+		 * @param          bool Whether the user can set primary category
+		 * @param $post_id int  Post ID
 		 */
-		return apply_filters( 'user_can_set_primary_category', current_user_can( 'edit_posts', $post_id ) );
+		return apply_filters( 'user_can_set_primary_category', current_user_can( 'edit_posts', $post_id ), $post_id );
 	}
 }
