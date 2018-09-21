@@ -1,0 +1,21 @@
+{
+  "name": "primary_category",
+  "description": "Designate a primary category for posts, and query for posts by their primary category.",
+  "author": "Nate Allen",
+  "version": "1.0.0",
+  "main": "gulpfile.js",
+  "license": "GPL-2.0",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^4.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-imagemin": "^3.3.0",
+    "gulp-line-ending-corrector": "^1.0.1",
+    "gulp-sass": "^3.1.0",
+    "gulp-watch": "^4.3.11",
+    "gulp-csso": "^3.0.1",
+    "gulp-uglify-es": "^1.0.4",
+    "gulp-rename": "^1.4.0"
+  },
+  "dependencies": {}
+}
