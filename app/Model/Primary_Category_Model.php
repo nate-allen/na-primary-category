@@ -1,0 +1,61 @@
+<?php
+/**
+ * Primary Category Model
+ *
+ * @package Primary_Category\Model
+ */
+
+namespace Primary_Category\Model;
+
+class Primary_Category_Model {
+	/**
+	 * Plugin configuration
+	 *
+	 * @var Config_Model
+	 */
+	protected $config;
+
+	/**
+	 * Taxonomy arguments
+	 *
+	 * @var array
+	 */
+	public $args = array();
+
+	/**
+	 * Primary Category Model constructor
+	 */
+	public function __construct() {
+		// Set the plugin configuration
+		$this->config = new Config_Model();
+
+		// Set the taxonomy arguments
+		$this->set_args();
+	}
+
+	public function get_primary_category( $post ) {
+		return true;
+	}
+
+	/**
+	 * Set the taxonomy arguments
+	 *
+	 * This is a private/hidden taxonomy, not shown in the admin
+	 *
+	 * @return void
+	 */
+	protected function set_args() {
+		$default_args = array(
+			'label'        => esc_html__( 'Primary Category', 'na-primary-category' ),
+			'hierarchical' => true,
+			'public'       => false,
+		);
+
+		/**
+		 * Filters the default taxonomy arguments for the primary_category taxonomy.
+		 *
+		 * @param array $default_args Default arguments
+		 */
+		$this->args = apply_filters( 'primary_category_taxonomy_args', $default_args );
+	}
+}
