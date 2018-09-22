@@ -6,7 +6,7 @@
 
 ## Setting the primary category
 
-When adding more than 1 category, you are given the option of selecting which category is the primary one:
+When adding more than one category, you are given the option of selecting which category is the primary one:
 
 ![Setting primary category](https://github.com/nate-allen/na-primary-category/blob/master/assets/screenshot-1.png)
 
@@ -27,13 +27,13 @@ $query = new WP_Query( $args );
 
 The **Primary Category** plugin registers a private taxonomy that keeps track of which category is currently the primary one. When you search by primary category, the plugin uses `tax_query` to find the posts that have that primary category set.
 
-Why use a taxonomy and not post meta? Post meta is great for storing unique metadata about a post, but its not efficient for querying. Taxonomies are great for grouping posts and querying by them is faster.
+Why use a taxonomy and not post meta? Post meta is great for storing unique metadata about a post, but its not efficient for querying. Taxonomies are great for grouping posts, and querying by them is faster.
 
 ## Compatible with Yoast SEO Plugin
 
-With over 5+ million active installations, the Yoast SEO plugin is one of the most popular plugins in the WordPress plugin directory. Yoast SEO has its own "primary category" functionality that is uses for (among other things) determining which category to show in the breadcrumbs.
+With over 5+ million active installations, the Yoast SEO plugin is one of the most popular plugins in the WordPress plugin directory. Yoast SEO has its own "primary category" functionality that it uses for (among other things) determining which category to show in the breadcrumbs.
 
-**Primary Category** detects if the Yoast SEO plugin is installed and will use the UI that plugin provides. This ensures there aren't multiple "make primary" buttons shown.
+**Primary Category** detects if the Yoast SEO plugin is installed and will use the UI it provides. This ensures there aren't multiple "make primary" buttons shown.
 
 Note: Yoast SEO stores their primary category as post meta, and is not meant for querying (which is why you should use this plugin!).
  
