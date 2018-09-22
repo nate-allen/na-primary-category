@@ -40,12 +40,12 @@ primaryCategory.admin = ( function( $ ) {
         maybe_setup_buttons: function() {
 
             // If Yoast SEO is installed, we'll use their buttons
-            if ( window.primaryCategory_admin.yoast_seo_installed ) {
+            if ( window.primary_category_admin.yoast_seo_installed ) {
                 return;
             }
 
             // Don't show buttons if user doesn't have permission to set the primary category
-            if ( ! window.primaryCategory_admin.user_has_permission ) {
+            if ( ! window.primary_category_admin.user_has_permission ) {
                 return;
             }
 
@@ -64,7 +64,7 @@ primaryCategory.admin = ( function( $ ) {
         setup_buttons: function() {
 
             // If Yoast SEO is installed, we'll use their buttons
-            if ( window.primaryCategory_admin.yoast_seo_installed ) {
+            if ( window.primary_category_admin.yoast_seo_installed ) {
                 return;
             }
 
@@ -118,7 +118,7 @@ primaryCategory.admin = ( function( $ ) {
         setup_primaryCategory: function() {
 
             // If Yoast SEO is installed, we'll use their primary category
-            if ( window.primaryCategory_admin.yoast_seo_installed ) {
+            if ( window.primary_category_admin.yoast_seo_installed ) {
                 let categoryID = $( '.yoast-wpseo-primary-term' ).val();
 
                 $elements.hidden_field.val( categoryID );
@@ -157,7 +157,7 @@ primaryCategory.admin = ( function( $ ) {
             let $button   = $( '<button>', {
                 type: 'button',
                 class: 'na-make-primary-category'
-            } ).text( window.primaryCategory_admin.i18n.make_primary );
+            } ).text( window.primary_category_admin.i18n.make_primary );
 
             // Don't add a button if there's already one
             if ( $category.find( '.na-make-primary-category' ).length ) {
@@ -180,7 +180,7 @@ primaryCategory.admin = ( function( $ ) {
             let $category   = $( '#' + category );
             let $label      = $( '<span>', {
                 class: 'na-primary'
-            } ).text( window.primaryCategory_admin.i18n.primary );
+            } ).text( window.primary_category_admin.i18n.primary );
 
             // Skip if it already has a label
             if ( $category.find( '.na-primary' ).length ) {
