@@ -12,7 +12,7 @@ When adding more than one category, you are given the option of selecting which 
 
 ## Querying by primary category
 
-This plugin extends `WP_Query` by adding a new parameter, `primary_category`, that accepts the category ID to get posts for have that as their primary category.
+This plugin extends `WP_Query` by adding a new parameter, `primary_category`, that accepts the category ID to get posts that have that as their primary category.
 
 ### Example
 ```php
