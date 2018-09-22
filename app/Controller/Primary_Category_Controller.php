@@ -51,7 +51,7 @@ class Primary_Category_Controller extends Controller {
 		}
 
 		// Verify the nonce
-		if ( ! isset( $_POST['_na_primary_category_nonce'] ) || ! wp_verify_nonce( sanitize_key( $_POST['_na_primary_category_nonce'] ), "set_primary_category_{$post_id}" ) ) {
+		if ( ! isset( $_POST['_na_primary_category_nonce'] ) || ! wp_verify_nonce( sanitize_key( $_POST['_na_primary_category_nonce'] ), "set_primary_category_{$post_id}" ) ) { // Input var okay.
 			return;
 		}
 
@@ -61,12 +61,12 @@ class Primary_Category_Controller extends Controller {
 		}
 
 		// Check if the primary category is set
-		if ( ! isset( $_POST['na_primary_category_id'] ) ) {
+		if ( ! isset( $_POST['na_primary_category_id'] ) ) {  // Input var okay.
 			return;
 		}
 
 		// Set the primary category
-		wp_set_object_terms( $post_id, sanitize_text_field( $_POST['na_primary_category_id'] ), 'na_primary_category' );
+		wp_set_object_terms( $post_id, sanitize_text_field( wp_unslash( $_POST['na_primary_category_id'] ) ), 'na_primary_category' ); // Input var okay.
 	}
 
 	/**
@@ -79,7 +79,8 @@ class Primary_Category_Controller extends Controller {
 			return;
 		}
 
-		$tax_query = $query->get( 'tax_query' ) ? : array();
+		$tax_query = $query->get( 'tax_query' ) ?: array();
+		$query     = is_array( $query ) ?: array( $query );
 
 		$tax_query[] = array(
 			array(
