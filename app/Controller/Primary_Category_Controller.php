@@ -20,6 +20,7 @@ class Primary_Category_Controller extends Controller {
 		add_action( 'init', array( $this, 'register_taxonomy' ) );
 		add_action( 'save_post', array( $this, 'update_primary_category' ) );
 		add_action( 'pre_get_posts', array( $this, 'handle_custom_query_parameter' ) );
+		add_action( 'delete_category', array( $this, 'remove_primary_category_after_deleted' ), 10, 4 );
 	}
 
 	/**
@@ -80,7 +81,6 @@ class Primary_Category_Controller extends Controller {
 		}
 
 		$tax_query = $query->get( 'tax_query' ) ?: array();
-		$query     = is_array( $query ) ?: array( $query );
 
 		$tax_query[] = array(
 			array(
@@ -91,5 +91,20 @@ class Primary_Category_Controller extends Controller {
 		);
 
 		$query->set( 'tax_query', $tax_query );
+	}
+
+	/**
+	 * Remove primary category term when category is deleted
+	 *
+	 * When a category is removed, we need to make sure the same primary category is also
+	 * removed. This is good housekeeping, and it removes the primary category association
+	 * that no longer exists.
+	 *
+	 * @param $term int Term ID
+	 */
+	public function remove_primary_category_after_deleted( $term ) {
+		$primary_category = get_term_by( 'slug', $term, 'na_primary_category' );
+
+		wp_delete_term( $primary_category->term_id, 'na_primary_category' );
 	}
 }
