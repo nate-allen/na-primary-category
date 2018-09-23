@@ -14,7 +14,10 @@ class Controller extends View {
 
 	protected $config;
 
-	public function __construct( $month = null, $year = null ) {
+	/**
+	 * Controller constructor
+	 */
+	public function __construct() {
 		$config       = new Config_Model();
 		$this->config = $config;
 	}

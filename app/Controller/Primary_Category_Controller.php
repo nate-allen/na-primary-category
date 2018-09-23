@@ -13,8 +13,6 @@ class Primary_Category_Controller extends Controller {
 
 	/**
 	 * Register the actions and filters
-	 *
-	 * @return void
 	 */
 	public function register_actions() {
 		add_action( 'init', array( $this, 'register_taxonomy' ) );
@@ -30,7 +28,7 @@ class Primary_Category_Controller extends Controller {
 	 * of which category is the primary one. We use a taxonomy to keep track of this
 	 * because it's the most efficient way to query posts, unlike post meta
 	 *
-	 * @return void
+	 * @since 1.0.0
 	 */
 	public function register_taxonomy() {
 		$primary_category_model = new Primary_Category_Model();
@@ -41,7 +39,8 @@ class Primary_Category_Controller extends Controller {
 	/**
 	 * Update the primary category when the post is saved
 	 *
-	 * @param $post_id int Post ID
+	 * @param int $post_id Post ID
+	 * @since 1.0.0
 	 */
 	public function update_primary_category( $post_id ) {
 		$primary_category_model = new Primary_Category_Model();
@@ -73,7 +72,8 @@ class Primary_Category_Controller extends Controller {
 	/**
 	 * Handle the 'primary_category' argument in WP_Query
 	 *
-	 * @param $query
+	 * @param \WP_Query $query The WP_Query instance (passed by reference).
+	 * @since 1.0.0
 	 */
 	public function handle_custom_query_parameter( $query ) {
 		if ( ! isset( $query->query_vars['primary_category'] ) ) {
@@ -100,7 +100,8 @@ class Primary_Category_Controller extends Controller {
 	 * removed. This is good housekeeping, and it removes the primary category association
 	 * that no longer exists.
 	 *
-	 * @param $term int Term ID
+	 * @param int $term Term ID
+	 * @since 1.1.0
 	 */
 	public function remove_primary_category_after_deleted( $term ) {
 		$primary_category = get_term_by( 'slug', $term, 'na_primary_category' );

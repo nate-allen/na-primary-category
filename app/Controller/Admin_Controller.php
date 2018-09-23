@@ -13,8 +13,6 @@ class Admin_Controller extends Controller {
 
 	/**
 	 * Register the actions and filters
-	 *
-	 * @return void
 	 */
 	public function register_actions() {
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts_and_styles' ), 10, 1 );
@@ -27,7 +25,7 @@ class Admin_Controller extends Controller {
 	 * Scripts and styles are registered in Primary_Category\Core\Bootstrap
 	 *
 	 * @param string $hook_suffix The current admin page.
-	 * @return void
+	 * @since 1.0.0
 	 */
 	public function enqueue_admin_scripts_and_styles( $hook_suffix ) {
 		// Bail early if this isn't the post edit screen
@@ -61,7 +59,7 @@ class Admin_Controller extends Controller {
 	 *
 	 * The hidden field stores the primary category term ID
 	 *
-	 * @return void
+	 * @since 1.0.0
 	 */
 	public function add_fields_to_submitbox( $post ) {
 		$primary_category_model = new Primary_Category_Model();

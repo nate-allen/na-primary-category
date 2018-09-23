@@ -11,7 +11,7 @@ class View {
 	/**
 	 * Variables for substitution in templates
 	 *
-	 * @var array
+	 * @var array Variables passed to the view
 	 */
 	protected $variables = array();
 
@@ -20,8 +20,7 @@ class View {
 	 *
 	 * @param string $variable Name variable to assign
 	 * @param mixed  $value    Value variable for assign
-	 *
-	 * @return void
+	 * @since 1.0.0
 	 */
 	public function assign( $variable, $value ) {
 		$this->variables[ $variable ] = $value;
@@ -34,8 +33,7 @@ class View {
 	 *
 	 * @param string $file     File to get HTML string
 	 * @param string $view_dir View directory
-	 *
-	 * @return void
+	 * @since 1.0.0
 	 */
 	public function the_view( $file, $view_dir = null ) {
 		foreach ( $this->variables as $key => $value ) {
@@ -59,7 +57,7 @@ class View {
 	 *
 	 * @param string $file     File to get HTML string
 	 * @param string $view_dir View directory
-	 *
+	 * @since 1.0.0
 	 * @return string $html HTML output as string
 	 */
 	public function get_view( $file, $view_dir = null ) {
@@ -87,7 +85,7 @@ class View {
 	/**
 	 * Resets the variables
 	 *
-	 * @return void
+	 * @since 1.0.0
 	 */
 	protected function init_assignments() {
 		$this->variables = array();

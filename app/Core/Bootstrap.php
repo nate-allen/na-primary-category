@@ -12,9 +12,19 @@ use \Primary_Category\Helper\Files;
 
 class Bootstrap {
 
-	protected $config      = array();
+	/**
+	 * @var Config_Model The plugin configuration
+	 */
+	protected $config;
+
+	/**
+	 * @var array The plugin controllers
+	 */
 	protected $controllers = array();
 
+	/**
+	 * Bootstrap constructor
+	 */
 	public function __construct() {
 		$this->config = new Config_Model();
 	}
@@ -22,7 +32,7 @@ class Bootstrap {
 	/**
 	 * Default setup routine
 	 *
-	 * @return void
+	 * @since 1.0.0
 	 */
 	public function run() {
 		// Load the textdomain
@@ -45,7 +55,7 @@ class Bootstrap {
 	/**
 	 * Load the textdomain to make the plugin translatable
 	 *
-	 * @return void
+	 * @since 1.0.0
 	 */
 	protected function load_textdomain() {
 		$textdomain_dir  = dirname( $this->config->get( 'plugin_base_name' ) );
@@ -64,7 +74,7 @@ class Bootstrap {
 	 * Loops over all php files in the Controllers directory and add them to
 	 * the $controllers array
 	 *
-	 * @return void
+	 * @since 1.0.0
 	 */
 	protected function load_controllers() {
 		$namespace = $this->config->get( 'namespace' );
@@ -82,7 +92,7 @@ class Bootstrap {
 	/**
 	 * Register all the hooks/filters for each controller
 	 *
-	 * @return void
+	 * @since 1.0.0
 	 */
 	protected function register_actions() {
 		foreach ( $this->controllers as $name => $class ) {
@@ -95,7 +105,7 @@ class Bootstrap {
 	/**
 	 * Register JavaScript and CSS stylesheets
 	 *
-	 * @return void
+	 * @since 1.0.0
 	 */
 	public function register_scripts_and_styles() {
 		if ( is_admin() ) {

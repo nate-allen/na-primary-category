@@ -9,8 +9,14 @@ namespace Primary_Category\Model;
 
 class Config_Model {
 
+	/**
+	 * @var Config_Model Plugin configuration
+	 */
 	protected $config;
 
+	/**
+	 * @var array Configuration properties
+	 */
 	protected $properties = array();
 
 	/**
@@ -23,6 +29,7 @@ class Config_Model {
 	/**
 	 * Sets the default configuration
 	 *
+	 * @since 1.0.0
 	 * @return bool|mixed
 	 */
 	protected function setup_plugin_config() {
@@ -63,9 +70,9 @@ class Config_Model {
 	/**
 	 * Returns the value of the configuration
 	 *
-	 * @param $name string Configuration to get
-	 *
-	 * @return bool|mixed
+	 * @param string $name Configuration to get
+	 * @since 1.0.0
+	 * @return bool|mixed The value if the property exists or False if not
 	 */
 	public function get( $name ) {
 		if ( isset( $this->properties[ $name ] ) ) {
@@ -78,10 +85,9 @@ class Config_Model {
 	/**
 	 * Sets a configuration
 	 *
-	 * @param $name  string The name of the configuration
-	 * @param $value string The value of the configuration
-	 *
-	 * @return void
+	 * @param string $name  The name of the configuration
+	 * @param string $value The value of the configuration
+	 * @since 1.0.0
 	 */
 	public function set( $name, $value ) {
 		$this->properties[ $name ] = $value;
@@ -90,9 +96,9 @@ class Config_Model {
 	/**
 	 * Sets multiple configurations at a time
 	 *
-	 * @param $var array|object Collection of configurations to set
-	 *
-	 * @return bool
+	 * @param array|object $var Collection of configurations to set
+	 * @since 1.0.0
+	 * @return bool True if properties set or False if $var is not correct format
 	 */
 	public function import( $var ) {
 		if ( ! is_array( $var ) && ! is_object( $var ) ) {

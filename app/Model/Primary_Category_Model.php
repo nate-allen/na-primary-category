@@ -38,7 +38,7 @@ class Primary_Category_Model {
 	 * Get the primary category id
 	 *
 	 * @param $post_id
-	 *
+	 * @since 1.0.0
 	 * @return int|bool Primary category ID if it exists, false if there is no primary category
 	 */
 	public function get_primary_category_id( $post_id = 0 ) {
@@ -56,9 +56,9 @@ class Primary_Category_Model {
 	/**
 	 * Set the taxonomy arguments
 	 *
-	 * This is a private/hidden taxonomy, not shown in the admin
+	 * This is non-public taxonomy, not shown in the admin
 	 *
-	 * @return void
+	 * @since 1.0.0
 	 */
 	protected function set_args() {
 		$default_args = array(
@@ -71,6 +71,7 @@ class Primary_Category_Model {
 		 * Filters the default taxonomy arguments for the primary_category taxonomy.
 		 *
 		 * @param array $default_args Default arguments
+		 * @since 1.0.0
 		 */
 		$this->args = apply_filters( 'primary_category_taxonomy_args', $default_args );
 	}
@@ -79,7 +80,7 @@ class Primary_Category_Model {
 	 * Determines if the current user can set the primary category
 	 *
 	 * @param int $post_id The ID of the post to check if a user can edit the primary category for
-	 *
+	 * @since 1.0.0
 	 * @return bool
 	 */
 	public function user_can_set_primary_category( $post_id = 0 ) {
@@ -96,8 +97,9 @@ class Primary_Category_Model {
 		 * By default, this is determined by the edit_post capability, but you can use this
 		 * filter to create your own rules.
 		 *
-		 * @param          bool Whether the user can set primary category
-		 * @param $post_id int  Post ID
+		 * @param bool          Whether the user can set primary category
+		 * @param int  $post_id Post ID
+		 * @since 1.0.0
 		 */
 		return apply_filters( 'user_can_set_primary_category', current_user_can( 'edit_posts', $post_id ), $post_id );
 	}
