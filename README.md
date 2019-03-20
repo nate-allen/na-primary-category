@@ -8,7 +8,7 @@
 
 When adding more than one category, you are given the option of selecting which category is the primary one:
 
-![Setting primary category](https://github.com/nate-allen/na-primary-category/blob/master/assets/screenshot-1.png)
+![Setting primary category](https://github.com/nate-allen/na-primary-category/blob/master/assets/screenshot-1.gif)
 
 ## Querying by primary category
 
