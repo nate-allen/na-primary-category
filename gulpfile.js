@@ -32,7 +32,7 @@ gulp.task( 'js', function() {
         .pipe( concat('primary-category-admin.min.js') )
         .pipe( uglify() )
         .pipe( gulp.dest('./dist/js'));
-} );
+});
 
 /**
  * Run Sass processes and minify CSS file
@@ -49,17 +49,17 @@ gulp.task( 'css', function() {
             suffix: '.min'
         }))
         .pipe( gulp.dest('./dist/css') );
-} );
+});
 
 /**
  * Watch for file changes and run processes
  */
-gulp.task( 'watch', ['css', 'js'], function() {
-    gulp.watch('./src/scss/**/*.scss', ['css']);
-    gulp.watch(['./src/js/admin/*.js','./src/js/frontend/*.js'], ['js']);
-} );
+gulp.task( 'watch', gulp.series(gulp.parallel('css', 'js'), function() {
+    gulp.watch('./src/scss/**/*.scss', gulp.series('css'));
+    gulp.watch(['./src/js/admin/*.js','./src/js/frontend/*.js'], gulp.series('js'));
+}));
 
 /**
  * Default Gulp task
  */
-gulp.task('default', ['css', 'js']);
+gulp.task( 'default', gulp.series(gulp.parallel('css', 'js')));
